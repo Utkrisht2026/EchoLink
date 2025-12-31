@@ -8,5 +8,3 @@ def speak(text, lang):
 
 if __name__ == "__main__":
     speak("This is a test", "en")
-
-
