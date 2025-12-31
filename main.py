@@ -30,19 +30,23 @@ if choice not in LANGUAGES:
 language_name, target_lang = LANGUAGES[choice]
 print(f"\nSelected Output Language: {language_name}")
 
+# 🎤 Record audio
 record_audio()
 
-text = speech_to_text()
+# 🧠 Speech → Text (AUTO language detection)
+text, source_lang = speech_to_text()
 print("Recognized Text:", text)
+print("Detected Input Language:", source_lang)
 
-# 🔑 ENGLISH OUTPUT HANDLING
-if target_lang == "en":
+# 🌍 Translate only if needed
+if source_lang == target_lang:
     translated_text = text
 else:
-    translated_text = translate(text, target_lang)
+    translated_text = translate(text, source_lang, target_lang)
 
 print("Final Text:", translated_text)
 
+# 🔊 Speak output
 speak(translated_text, target_lang)
 
 print("\nEchoLink finished successfully.")
